@@ -57,7 +57,7 @@ class Game {
 
             if (index === player.index) {
 
-                fill("black");
+                fill("white");
                 textSize(25);
                 text(allPlayers[plr].name, x - 25, y + 25);
 
@@ -65,8 +65,12 @@ class Game {
             }
 
             //text to display player score.
-            text("Player 1 :" + allPlayers.player1.score, 50, 50);
-
+            text("Player 2 :" + allPlayers.player2.score, 50, 50);
+             if(index === player2.index) {
+                 fill("black");
+                textSize(25);
+                text(allPlayers[plr].name, x + 25, y - 25);
+             }
 
 
         }
@@ -74,11 +78,11 @@ class Game {
 
         // Give movements for the players using arrow keys
         if (keyIsDown(RIGHT_ARROW) && player.index !== null) {
-            player.distance += 10;
+            player.distance = -10;
             player.update();
         }
         if (keyIsDown(LEFT_ARROW) && player.index !== null) {
-            player.distance -= 10;
+            player.distance = +10;
             player.update();
         }
 
@@ -103,12 +107,14 @@ class Game {
         }
 
         if (player.index !== null) {
-            //fill code here, to destroy the objects. (Use the one in the class project 40)
-            if (fruitGroup.isTouching(player)) {
-                fruitGroup.destroyEach();
-                player.update(player.score);
+            for (var i = 0; i < fruitGroup.length; i++){
+                  if (fruitGroup[1].isTouching(player)) {
+                fruitGroup[1].destroyEach();
+                player.update();
                 player.score = player.score + 1;
             }
+            }
+          
 
         }
 
